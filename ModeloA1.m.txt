@@ -1,0 +1,28 @@
+function ModeloA1 (Nom_doc)
+Raw = readmatrix(Nom_doc);
+Tiempo=Raw(:,1);
+Referencia=Raw(:,2);
+Control=Raw(:,3);
+Lectura=Raw(:,4);
+Ys=max(Lectura)-min(Lectura)
+Us=max(Control)-min(Control)
+Gs=Ys/Us
+
+objetivo = 0.63 * Ys;   % 63% del salto respecto al mínimo: min(Lectura) + 0.63*Ys
+errorMin = abs(Lectura(1) - objetivo);
+
+for i = 1:numel(Lectura)
+    errorActual = abs(Lectura(i) - objetivo);
+    if errorActual < errorMin
+        errorMin = errorActual;
+        idx = i;
+    end
+end
+
+Tiempo63 = Tiempo(idx)
+Lectura63 = Lectura(idx)
+    
+plot(Lectura,Tiempo)
+hold on 
+plot(Lectura63,Tiempo63,'*r')
+end
