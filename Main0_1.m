@@ -1,22 +1,8 @@
 src = fullfile(pwd, 'src');
 addpath(src);
-src2 = fullfile(pwd, 'lib');
-addpath(src2);
+src = fullfile(pwd, 'lib');
+addpath(src);
+clear src
 
-clear all
-cla
-clf
-
-Resultado = Ensayos(2);
-
-% DA_NIDAQ_USB(0);
-
-Tiempo = Resultado(:,1);
-Ref = Resultado(:,2);
-Control = Resultado(:,3);
-Lectura = Resultado(:,4);
-
-hold on
-plot(Tiempo, Ref)
-plot(Tiempo, Lectura)
-hold off
+[Tiempo, Ref, Control, Lectura, Nom_doc] = Datos_Ensayo(2);
+Mostrar_Ensayo(2);
