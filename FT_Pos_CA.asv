@@ -1,0 +1,32 @@
+src = fullfile(pwd, 'src');
+addpath(src);
+src = fullfile(pwd, 'lib');
+addpath(src);
+clear src
+
+[Tiempo, Ref, Control, Lectura, Nom_doc] = Datos_Ensayo(1);
+Mostrar_Ensayo(1);
+y1 = 5.5731; y2 = -4.1505
+
+
+
+% vuelta = 0
+% vpv = 8
+% Lectura2 = zeros(numel(Lectura{1}))
+% for i=1:numel(Lectura{1})
+%     if i ~= numel(Lectura{1})
+%         if Lectura{1}(i+1) - Lectura{1}(i) > 5
+%             vuelta = vuelta + 1
+%         elseif Lectura{1}(i+1) - Lectura{1}(i) < -5
+%             vuelta = vuelta - 1
+%         end
+%     end
+% 
+%     Lectura2(i) = Lectura{1}(i) + vuelta*vpv
+% end
+% 
+% hold on
+% plot(Tiempo{1}, Lectura{1})
+% plot(Tiempo{1}, Lectura2)
+% legend("Real","Rectificado")
+% hold off

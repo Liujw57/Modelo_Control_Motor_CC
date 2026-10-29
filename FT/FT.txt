@@ -1,0 +1,1 @@
+   Pos_BC   (K*Wn^2)/(s^2+2*E*Wn*s+Wn^2)
