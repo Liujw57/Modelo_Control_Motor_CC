@@ -38,8 +38,8 @@ function Ensayo = Ensayos(a)
             Duracion = 20; % Duración del ensayo en s
             Angulo_Objetivo = 90; % 0V es mirando al frente (90º en el papel) +h -ah
             Kp = 1.5;
-            Ki = 0;
-            Kd = 0;
+            % Ki = 0;
+            % Kd = 0;
             Nombre_Resultado = 'Posicion_BC';
          case 4
             %Doc2_5.1.1
