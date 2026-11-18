@@ -23,10 +23,10 @@ style="
     width:auto;">
 </p>
 
-fdsgfsgasdasd
+//Pendiente de construcción
 
 
-- Ensayo de posición en bucle abierto
+### Ensayo de posición en bucle abierto
 <p align="center"> <img src="img/P_BA.png" alt="Valor del ensayo de velocidad"
 style="
     max-height:300px;
@@ -60,11 +60,13 @@ arbitrarios del sistema en estado estable.
 
 Para determinar $K$ siendo este la pendiente respecto de la señar de control
 ,primero se calcula la pendiente $m$:
+
 $$
 m = \frac{Y_2 - Y_1}{X_2 - X_1} \Rightarrow
 m = \frac{-8.42683 - (-6.76969)}{3.55396 - 3.39392} \Rightarrow
 \underline{m = -10.3545}
 $$
+
 $$
 K = \frac{m}{\Delta U} \Rightarrow
 K = \frac{-10.3545}{2} \Rightarrow
@@ -73,7 +75,5 @@ $$
 
 
 
-
-
-- Ensayo de posición en bucle cerrado
+### Ensayo de posición en bucle cerrado
 
