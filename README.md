@@ -63,12 +63,12 @@ Para determinar $K$ siendo este la pendiente respecto de la señar de control
 $$
 m = \frac{Y_2 - Y_1}{X_2 - X_1} \Rightarrow
 m = \frac{-8.42683 - (-6.76969)}{3.55396 - 3.39392} \Rightarrow
-\underline{m = -10.3545}
+m = -10.3545
 $$
 $$
 K = \frac{m}{\Delta U} \Rightarrow
 K = \frac{-10.3545}{2} \Rightarrow
-\boxed{K = -5.177}
+K = -5.177
 $$
 
 
