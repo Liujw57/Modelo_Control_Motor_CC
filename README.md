@@ -19,7 +19,7 @@ n el tipo de ensayo, se realizan 3 ensayos:
 ### Ensayo de velocidad 
 <p align="center"> <img src="img/V_ESC.png" alt="Valor del ensayo de velocidad"
 style="
-    max-height:150px;
+    max-height:300px;
     width:auto;">
 </p>
 
@@ -29,7 +29,7 @@ fdsgfsgasdasd
 - Ensayo de posición en bucle abierto
 <p align="center"> <img src="img/P_BA.png" alt="Valor del ensayo de velocidad"
 style="
-    max-height:150px;
+    max-height:300px;
     width:auto;">
 </p>
 
@@ -60,17 +60,15 @@ arbitrarios del sistema en estado estable.
 
 Para determinar $K$ siendo este la pendiente respecto de la señar de control
 ,primero se calcula la pendiente $m$:
-
 $$
 m = \frac{Y_2 - Y_1}{X_2 - X_1} \Rightarrow
 m = \frac{-8.42683 - (-6.76969)}{3.55396 - 3.39392} \Rightarrow
-m = -10.3545
+\underline{m = -10.3545}
 $$
-
 $$
 K = \frac{m}{\Delta U} \Rightarrow
 K = \frac{-10.3545}{2} \Rightarrow
-K = -5.177
+\boxed{K = -5.177}
 $$
 
 
