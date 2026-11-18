@@ -19,7 +19,7 @@ n el tipo de ensayo, se realizan 3 ensayos:
 ### Ensayo de velocidad 
 <p align="center"> <img src="img/V_ESC.png" alt="Valor del ensayo de velocidad"
 style="
-    max-height:300px;
+    max-height:150px;
     width:auto;">
 </p>
 
@@ -29,7 +29,7 @@ fdsgfsgasdasd
 - Ensayo de posición en bucle abierto
 <p align="center"> <img src="img/P_BA.png" alt="Valor del ensayo de velocidad"
 style="
-    max-height:300px;
+    max-height:150px;
     width:auto;">
 </p>
 
