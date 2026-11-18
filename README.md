@@ -65,6 +65,7 @@ m = \frac{Y_2 - Y_1}{X_2 - X_1} \Rightarrow
 m = \frac{-8.42683 - (-6.76969)}{3.55396 - 3.39392} \Rightarrow
 m = -10.3545
 $$
+
 $$
 K = \frac{m}{\Delta U} \Rightarrow
 K = \frac{-10.3545}{2} \Rightarrow
