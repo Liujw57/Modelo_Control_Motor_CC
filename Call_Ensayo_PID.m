@@ -10,3 +10,4 @@ plot(Tiempo, Ref)
 plot(Tiempo, Lectura)
 plot(Tiempo, Control)
 legend('Ref', 'Lectura', 'Control')
+asfdassadf
