@@ -29,37 +29,67 @@ Si no hay valor integral y derivativo poner 0
 %Var para ensayo
     error = zeros(1,3);
     Salida = zeros(1,2);
-    Muestra = 20; %cada cuento se guardan los datos
-    t_ini = milisec;
-    time = milisec;
-    dato = 1;
+    time = zeros(1,2);
+    Muestra = 20; %cada cuento ms se guardan los datos 
 
-    while milisec - t_ini < Tiempo*1000
+    for i=1:Tiempo/Muestra
+        time(1) = milis;
+
         Lectura = AD_NIDAQ_USB();
-
-        dt = milisec - time;
         error(1) = Ref - Lectura;
-        
-        %Calculo de acción de control
-        Salida(1) = Salida(2) + Ctrl(1)*(error(1) - error(2) + (dt / Ctrl(2)) * error(2) + (Ctrl(3) / dt) * (error(1) - 2*error(2) + error(3)));
-        
+
+        Calculo de acción de control
+        Salida(1) = Salida(2) + Ctrl(1)*(error(1) - error(2) + ((Muestra/1000) / Ctrl(2)) * error(2) + (Ctrl(3) / (Muestra/1000)) * (error(1) - 2*error(2) + error(3)));
+
+        if Salida(1) > 10
+            Salida(1) = 10;
+        end
+        if Salida(1) < -10
+            Salida(1) = -10;
+        end
+
         %Apicar acción de control
         DA_NIDAQ_USB(Salida(1));
 
-        %Guarda datos
-        if (dato-1)*Muestra < milisec - t_ini
-            Segundos(dato) = (milisec - t_ini) / 1000;
-            Referencia(dato)=Ref;
-            Control(dato)=Salida(1);
-            Sistema(dato)=Lectura;
-            dato = dato + 1;
-        end
+        %Guardado de datos
+        Segundos(i) = (milisec - t_ini) / 1000;
+        Referencia(i)=Ref;
+        Control(i)=Salida(1);
+        Sistema(i)=Lectura;
         
-        %Actualizar var para siguiente iteración
         error = circshift(error, 1);
         Salida = circshift(Salida, 1);
-        time = milisec;
+        time(2) = milisec;
 
+        espera(max(0,Muestra-(time(2)-time(1))));
     end
+
+
+    % while milisec - t_ini < Tiempo*1000
+    %     Lectura = AD_NIDAQ_USB();
+    % 
+    %     dt = milisec - time;
+    %     error(1) = Ref - Lectura;
+    % 
+    %     %Calculo de acción de control
+    %     Salida(1) = Salida(2) + Ctrl(1)*(error(1) - error(2) + (dt / Ctrl(2)) * error(2) + (Ctrl(3) / dt) * (error(1) - 2*error(2) + error(3)));
+    % 
+    %     %Apicar acción de control
+    %     DA_NIDAQ_USB(Salida(1));
+    % 
+    %     %Guarda datos
+    %     if (dato-1)*Muestra < milisec - t_ini
+    %         Segundos(dato) = (milisec - t_ini) / 1000;
+    %         Referencia(dato)=Ref;
+    %         Control(dato)=Salida(1);
+    %         Sistema(dato)=Lectura;
+    %         dato = dato + 1;
+    %     end
+    % 
+    %     %Actualizar var para siguiente iteración
+    %     error = circshift(error, 1);
+    %     Salida = circshift(Salida, 1);
+    %     time = milisec;
+    % end
 
 end
