@@ -25,7 +25,7 @@ style="
 
 //En el ensayo se la aplica, partiendo de un tiempo de reposo, una tensión proporcional a una velocidad determinada. En este caso, de incremento de velocidad, se le incrementa la tensión 3V en cada incremento y reducen otros 3V en cada disminución. Luego se obtienen los valores de cada step en el ensayo.
 
-Como se puede ver en la gráfica
+Aún que la gráfica se muestre con curvas, se trata de un sistema de primer orden ya que son saltos simples pero el sistema necesita una curva de estabilización en un tiempo determinado.
 
 ### Ensayo de posición en bucle abierto
 <p align="center"> <img src="img/P_BA.png" alt="Valor del ensayo de velocidad"
