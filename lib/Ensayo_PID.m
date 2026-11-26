@@ -8,7 +8,11 @@ Ti = Tiempo integral
 Td = Tiempo derivativo
 Si no hay valor integral y derivativo poner 0
 %}
-
+    try
+        InicializaTarjeta
+    catch ME
+        error(ME.message);
+    end
 %Validación de argumentos de func
     if nargin < 3
         error("La función requiere al menos 3 argumentos (V_obj, Duración, Kp)")
@@ -91,5 +95,5 @@ Si no hay valor integral y derivativo poner 0
     %     Salida = circshift(Salida, 1);
     %     time = milisec;
     % end
-
+    DA_NIDAQ_USB(0);
 end
