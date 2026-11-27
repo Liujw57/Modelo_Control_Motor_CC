@@ -8,11 +8,7 @@ Ti = Tiempo integral
 Td = Tiempo derivativo
 Si no hay valor integral y derivativo poner 0
 %}
-    try
-        InicializaTarjeta
-    catch ME
-        error(ME.message);
-    end
+
 %Validación de argumentos de func
     if nargin < 3
         error("La función requiere al menos 3 argumentos (V_obj, Duración, Kp)")
@@ -22,6 +18,12 @@ Si no hay valor integral y derivativo poner 0
     end
     if nargin < 5 || isempty(Td)
         Td = 1;
+    end
+
+    try
+        InicializaTarjeta
+    catch ME
+        error(ME.message);
     end
 
 %Valor PID en Ctrl
@@ -34,33 +36,36 @@ Si no hay valor integral y derivativo poner 0
     error = zeros(1,3);
     Salida = zeros(1,2);
     time = zeros(1,2);
-    Muestra = 20; %cada cuento ms se guardan los datos 
-
-    for i=1:Tiempo/Muestra
-        time(1) = milis;
+    Muestra = 20; %cada cuento se guardan los datos
+    t_ini = milisec;
+    
+    for i=1:(Tiempo*1000)/Muestra
+        time(1) = milisec;
 
         Lectura = AD_NIDAQ_USB();
         error(1) = Ref - Lectura;
 
-        Calculo de acción de control
+        %Calculo de acción de control
         Salida(1) = Salida(2) + Ctrl(1)*(error(1) - error(2) + ((Muestra/1000) / Ctrl(2)) * error(2) + (Ctrl(3) / (Muestra/1000)) * (error(1) - 2*error(2) + error(3)));
 
-        if Salida(1) > 10
-            Salida(1) = 10;
-        end
+        %Limitar salida
         if Salida(1) < -10
             Salida(1) = -10;
+        end
+        if Salida(1) > 10
+            Salida(1) = 10;
         end
 
         %Apicar acción de control
         DA_NIDAQ_USB(Salida(1));
 
-        %Guardado de datos
+        %Guarda datos
         Segundos(i) = (milisec - t_ini) / 1000;
         Referencia(i)=Ref;
         Control(i)=Salida(1);
         Sistema(i)=Lectura;
-        
+  
+        %Actualizar var para siguiente iteración
         error = circshift(error, 1);
         Salida = circshift(Salida, 1);
         time(2) = milisec;
@@ -68,32 +73,10 @@ Si no hay valor integral y derivativo poner 0
         espera(max(0,Muestra-(time(2)-time(1))));
     end
 
-
-    % while milisec - t_ini < Tiempo*1000
-    %     Lectura = AD_NIDAQ_USB();
-    % 
-    %     dt = milisec - time;
-    %     error(1) = Ref - Lectura;
-    % 
-    %     %Calculo de acción de control
-    %     Salida(1) = Salida(2) + Ctrl(1)*(error(1) - error(2) + (dt / Ctrl(2)) * error(2) + (Ctrl(3) / dt) * (error(1) - 2*error(2) + error(3)));
-    % 
-    %     %Apicar acción de control
-    %     DA_NIDAQ_USB(Salida(1));
-    % 
-    %     %Guarda datos
-    %     if (dato-1)*Muestra < milisec - t_ini
-    %         Segundos(dato) = (milisec - t_ini) / 1000;
-    %         Referencia(dato)=Ref;
-    %         Control(dato)=Salida(1);
-    %         Sistema(dato)=Lectura;
-    %         dato = dato + 1;
-    %     end
-    % 
-    %     %Actualizar var para siguiente iteración
-    %     error = circshift(error, 1);
-    %     Salida = circshift(Salida, 1);
-    %     time = milisec;
-    % end
+    % Poner la salida a cero
     DA_NIDAQ_USB(0);
+    
+    %Parar las tareas
+    run('PararProcesosTarjeta');
+
 end
